@@ -48,7 +48,7 @@ export async function POST(request: Request) {
       from: 'Solana Support Desk <tickets@resend.dev>',
       to: supportInbox,
       subject: `[${ticket.tier.toUpperCase()}] ${ticket.subject}`,
-      reply_to: ticket.email,
+      replyTo: ticket.email,
       text: formatTicketPlainText(ticket),
       html: formatTicketHtml(ticket),
     })
