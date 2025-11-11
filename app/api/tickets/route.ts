@@ -45,7 +45,7 @@ export async function POST(request: Request) {
 
   try {
     await resendClient.emails.send({
-      from: 'Solana Support Desk <tickets@resend.dev>',
+      from: 'Solana Support Desk <franqsharky@goiferai.resend.app>', //tickets@resend.dev
       to: supportInbox,
       subject: `[${ticket.tier.toUpperCase()}] ${ticket.subject}`,
       replyTo: ticket.email,
