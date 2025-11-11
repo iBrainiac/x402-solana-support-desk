@@ -2,7 +2,7 @@
 
 ## Overview
 
-Solana Support Desk is a Next.js 16 application that demonstrates a tiered support workflow backed by Solana USDC payments using the X402 protocol. Users can submit tickets at three urgency levels:
+Solana Support Desk is an application that demonstrates a tiered support workflow backed by Solana USDC payments using the X402 protocol. Users can submit tickets at three urgency levels:
 
 - `Standard` – free, best-effort response
 - `Priority` – $1 USDC, 12h SLA
