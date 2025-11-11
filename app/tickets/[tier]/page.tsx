@@ -1,7 +1,7 @@
 import { TicketForm, type TicketTierConfig } from '@/components/ticket-form'
 import { notFound } from 'next/navigation'
 
-const TIERS: Record<string, TicketTierConfig> = {
+const TIERS = {
   standard: {
     price: 'Free',
     headline: 'Standard Support Ticket',
@@ -26,16 +26,20 @@ const TIERS: Record<string, TicketTierConfig> = {
     icon: '🚀',
     gradient: 'linear-gradient(135deg, rgba(255,82,124,0.45), rgba(20,241,149,0.25))',
   },
-}
+} satisfies Record<string, TicketTierConfig>
 
-export default async function TicketPage({ params }: { params: Promise<{ tier: string }> }) {
-  const { tier } = await params
-  const config = TIERS[tier]
+type TierKey = keyof typeof TIERS
 
-  if (!config) {
+const isSupportedTier = (value: string): value is TierKey => Object.hasOwn(TIERS, value)
+
+export default function TicketPage({ params }: { params: { tier: string } }) {
+  const { tier } = params
+
+  if (!isSupportedTier(tier)) {
     notFound()
   }
 
-  return <TicketForm tier={tier as keyof typeof TIERS} config={config} />
-}
+  const config = TIERS[tier]
 
+  return <TicketForm tier={tier} config={config} />
+}
